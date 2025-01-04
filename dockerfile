@@ -1,14 +1,14 @@
-# Use the official OpenJDK image from Docker Hub as the base image
+# Use an official OpenJDK runtime as a parent image
 FROM openjdk:17-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
 
+# Copy the entire target directory for debugging
 COPY ./target/ /app/
 
-
-# Expose the port your app will run on (if applicable)
+# Expose the port the app will run on
 EXPOSE 8080
 
-# Command to run your Java application
-CMD ["java", "-jar", "my-app.jar"]
+# Run the Java program
+CMD ["java", "-jar", "my-java-program.jar"]
