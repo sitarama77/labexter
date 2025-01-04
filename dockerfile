@@ -1,14 +1,14 @@
-# Use an official OpenJDK runtime as a parent image
+# Use an official OpenJDK image as a base
 FROM openjdk:17-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the entire target directory for debugging
-COPY ./target/ /app/
+# Copy the Java source file into the container
+COPY Sample.java /app/
 
-# Expose the port the app will run on
-EXPOSE 8080
+# Compile the Java program
+RUN javac Sample.java
 
 # Run the Java program
-CMD ["java", "-jar", "my-java-program.jar"]
+CMD ["java", "Sample"]
