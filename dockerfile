@@ -1,12 +1,14 @@
-# Use the official Python base image from the Docker Hub
-FROM python:3.9-slim
+# Use the official OpenJDK image from Docker Hub as the base image
+FROM openjdk:17-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the current directory content into the container at /app
-COPY . /app
+# Copy the compiled JAR file from the host machine to the container's working directory
+COPY target/my-app.jar /app/my-app.jar
 
-# Command to run your application
-CMD ["python", "app.py"]
+# Expose the port your app will run on (if applicable)
+EXPOSE 8080
 
+# Command to run your Java application
+CMD ["java", "-jar", "my-app.jar"]
